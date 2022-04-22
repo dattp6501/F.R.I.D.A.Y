@@ -1,0 +1,8 @@
+speechrecognition
+gTTS
+wikipedia
+playsound==1.2.2
+pandas
+numpy
+spacy
+PyAudio-0.2.11-cp310-cp310-win_amd64.whl
