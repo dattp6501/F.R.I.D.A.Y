@@ -3,56 +3,61 @@ from pickle import TRUE
 import wikipedia
 import app
 import timeai
-import audio
+import audiobot
 import web
 import weather
 def welcome():
     hour = datetime.now().hour
     if hour<=10:
-        audio.speak_vn("xin chào buổi sáng")
+        audiobot.speak_vn("xin chào buổi sáng")
     elif hour<=12:
-        audio.speak_vn("xin chào buổi trưa")
+        audiobot.speak_vn("xin chào buổi trưa")
     elif hour<=17:
-        audio.speak_vn("xin chào buổi chiều")
+        audiobot.speak_vn("xin chào buổi chiều")
     else:
-        audio.speak_vn("xin chào buổi tối")
-    audio.speak_vn("tôi có thể giúp gì cho bạn")
+        audiobot.speak_vn("xin chào buổi tối")
+    audiobot.speak_vn("tôi có thể giúp gì cho bạn")
 
 def search():
     wikipedia.set_lang('vi')
-    audio.speak_vn("bạn cần tìm thông tin gì ạ!")
-    key = audio.listen()
+    audiobot.speak_vn("bạn cần tìm thông tin gì ạ!")
+    key = audiobot.listen()
     data =  wikipedia.summary(key,1)
-    audio.speak_vn(data)
+    audiobot.speak_vn(data)
 if __name__ == "__main__":
-    goodbye = []
+    s = -1
+    while(s != 0):
+        s = audiobot.listen()
+
+
+
     welcome()
     while TRUE:
-        s = audio.listen()
-        if("thôi" in s or "tạm biệt" in s or "đi" in s or "biến" in s or "lướt" in s or "next" in s or "goodbye" in s or "cút" in s):
-            audio.speak_vn("vâng ạ!tôi sẽ đi ngay! hẹn gặp lại ạ!")
+        s = audiobot.listen()
+        if(s==1):
+            audiobot.speak_vn("vâng ạ!tôi sẽ đi ngay! hẹn gặp lại ạ!")
             break
-        elif ("giờ" in s):
-            audio.speak_vn(timeai.time())
-        elif("ngày" in s):
-            audio.speak_vn(timeai.date())
-        elif("google" in s):
+        elif (s == 6):
+            audiobot.speak_vn(timeai.time())
+        elif(s == 7):
+            audiobot.speak_vn(timeai.date())
+        elif(s==8):
             web.google()
-        elif("youtube" in s):
+        elif(s==10):
             web.youtube()
-        elif ("facebook" in s):
+        elif (s==9):
             web.facebook()
-        elif ("gmail" in s or "thư" in s):
+        elif (s==11):
             web.gmail()
-        elif("zalo" in s):
+        elif(s==2):
             app.zalo()
-        elif("word" in s or "soạn thảo văn bản" in s):
+        elif(s==3):
             app.word()
-        elif("excel" in s or "trang tính" in s):
+        elif(s==4):
             app.excel()
-        elif("powerpoint" in s or "trình chiếu" in s or "chình chiếu" in s):
+        elif(s==5):
             app.powerpoint()
-        elif("tìm kiếm" in s or "thông tin" in s):
+        elif(s==12):
             search()
-        elif("thời tiết" in s):
+        elif(s==13):
             weather.current_weather()
