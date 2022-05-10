@@ -18,5 +18,5 @@ data = np.array(data)
 #     print(i,end=", ")
 # train
 from sklearn.neighbors import KNeighborsClassifier
-neigh = KNeighborsClassifier(n_neighbors=3)
+neigh = KNeighborsClassifier(n_neighbors=14)
 neigh.fit(data,label)

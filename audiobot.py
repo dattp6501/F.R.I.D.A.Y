@@ -22,20 +22,20 @@ def speak_vn(s):
     os.remove(pathsound)
 # chuyen giong noi thanh string
 def listen():
-    bot = speech_recognition.Recognizer()
-    with speech_recognition.Microphone() as mic:
-        print("F.R.I.D.A.Y: listening...")
-        bot.pause_threshold = 1 #dung 2s roi nghe lenh moi
-        audio = bot.listen(mic)
-    s = "ngày bao nhiêu"
+    # bot = speech_recognition.Recognizer()
+    # with speech_recognition.Microphone() as mic:
+    #     print("F.R.I.D.A.Y: listening...")
+    #     bot.pause_threshold = 1 #dung 2s roi nghe lenh moi
+    #     audio = bot.listen(mic)
+    s = "giáo sư"
     try:
-        s = bot.recognize_google(audio, language="vi-VN")
+        # s = bot.recognize_google(audio, language="vi-VN")
         print("you: "+s)
         s = neigh.predict([nlp(s).vector])
     except speech_recognition.UnknownValueError:
         return -1
     return s[0]
-# print(listen())
+print(listen())
 def listentotext():
     bot = speech_recognition.Recognizer()
     with speech_recognition.Microphone() as mic:
