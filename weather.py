@@ -5,7 +5,7 @@ import audiobot
 from model import Weather
 def current_weather():
     audiobot.speak_vn("Bạn muốn xem thời tiết thành phố nào")
-    city = audiobot.listen()
+    city = audiobot.listentotext()
     if not city:
         pass
     api_key = "ce707b402145926a2f7e42eeaab3a8d8"

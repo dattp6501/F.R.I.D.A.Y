@@ -2,7 +2,8 @@ import os
 from gtts import gTTS
 import playsound
 import speech_recognition
-from intent import nlp,neigh,label
+from intent import nlp,neigh
+import numpy as np
 # phat ra loa 
 #english
 # def speak_en(audio):
@@ -22,19 +23,26 @@ def speak_vn(s):
     os.remove(pathsound)
 # chuyen giong noi thanh string
 def listen():
-    # bot = speech_recognition.Recognizer()
-    # with speech_recognition.Microphone() as mic:
-    #     print("F.R.I.D.A.Y: listening...")
-    #     bot.pause_threshold = 1 #dung 2s roi nghe lenh moi
-    #     audio = bot.listen(mic)
-    s = "giáo sư"
+    bot = speech_recognition.Recognizer()
+    with speech_recognition.Microphone() as mic:
+        print("F.R.I.D.A.Y: listening...")
+        bot.pause_threshold = 1 #dung 2s roi nghe lenh moi
+        audio = bot.listen(mic)
+    s = ""
     try:
-        # s = bot.recognize_google(audio, language="vi-VN")
-        print("you: "+s)
-        s = neigh.predict([nlp(s).vector])
+        s = bot.recognize_google(audio, language="vi-VN")
+        print("you: " + s)
+        s = np.array(neigh.predict_proba([nlp(s).vector]))
     except speech_recognition.UnknownValueError:
         return -1
-    return s[0]
+
+    maxx = round(np.max(s[0]),8)
+    print(maxx)
+    if(maxx < 0.6):
+        return -1
+    for i in range(np.size(s)):
+        if(round(s[0][i],8) == maxx):
+            return i
 print(listen())
 def listentotext():
     bot = speech_recognition.Recognizer()

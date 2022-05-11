@@ -1,5 +1,6 @@
 from datetime import datetime
 from pickle import TRUE
+import random
 import wikipedia
 import app
 import timeai
@@ -35,7 +36,8 @@ if __name__ == "__main__":
     while TRUE:
         s = audiobot.listen()
         if(s==1):
-            audiobot.speak_vn("vâng ạ!tôi sẽ đi ngay! hẹn gặp lại ạ!")
+            gb = ["xin chào! hẹn gặp lại bạn","vâng ạ!tôi sẽ đi ngay! hẹn gặp lại ạ!","rất vui khi giúp đỡ bạn"]
+            audiobot.speak_vn(gb[random.randint(0,len(gb))])
             break
         elif (s == 6):
             audiobot.speak_vn(timeai.time())
