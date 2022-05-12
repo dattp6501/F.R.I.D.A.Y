@@ -1,0 +1,11 @@
+có thể thêm các trường hợp khác nhau của cùng 1 ý nghĩa câu nói
+VD: chào (côt đầu tiên trong file train.xlsx)
+-------------------------------
+    chào
+    hello
+    xin chào
+    hi
+    chào buổi sáng
+
+
+tương tự với các cột còn lại

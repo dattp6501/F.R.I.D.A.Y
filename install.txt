@@ -11,3 +11,5 @@ python -m spacy download en_core_web_sm
 pip install https://gitlab.com/trungtv/vi_spacy/-/raw/master/vi_core_news_lg/dist/vi_core_news_lg-0.0.1.tar.gz
 pip install pyvi
 pip install opencv-python
+pip install pyautogui
+pip install speedtest

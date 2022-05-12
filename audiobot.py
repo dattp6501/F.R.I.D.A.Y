@@ -2,7 +2,7 @@ import os
 from gtts import gTTS
 import playsound
 import speech_recognition
-from intent import nlp,neigh
+from train import nlp,model
 import numpy as np
 # phat ra loa 
 #english
@@ -32,17 +32,18 @@ def listen():
     try:
         s = bot.recognize_google(audio, language="vi-VN")
         print("you: " + s)
-        s = np.array(neigh.predict_proba([nlp(s).vector]))
+        s = np.array(model.predict_proba([nlp(s).vector]))
     except speech_recognition.UnknownValueError:
         return -1
 
-    maxx = round(np.max(s[0]),8)
+    maxx = round(np.max(s[0]),2)
     print(maxx)
-    if(maxx < 0.6):
+    if(maxx < 0.65):
         return -1
     for i in range(np.size(s)):
-        if(round(s[0][i],8) == maxx):
+        if(round(s[0][i],2) == maxx):
             return i
+    return -1
 print(listen())
 def listentotext():
     bot = speech_recognition.Recognizer()
