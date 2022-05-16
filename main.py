@@ -35,7 +35,9 @@ def search():
     data =  wikipedia.summary(key,1)
     audiobot.speak_vn(data)
 if __name__ == "__main__":
-    
+    bot = botyoutube.BotYoutube()
+    bot.controll()
+    """
     # create model
     model = train.MyModel()
     pathfile = os.getcwd()
@@ -58,6 +60,7 @@ if __name__ == "__main__":
     print(options,sep=", ")
 
     while TRUE:
+        
         label,p = audiobot.listen(model)
         print(f"{label}, {p}")
         if(ok>=p):
@@ -124,4 +127,4 @@ if __name__ == "__main__":
             audiobot.speak_vn("các chức năng")
             for i in range(2,len(options)-1):
                 audiobot.speak_vn(options[i])
-    
+    """
