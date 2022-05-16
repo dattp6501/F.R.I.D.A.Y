@@ -59,7 +59,11 @@ if __name__ == "__main__":
     print("độ chính xác: " + str(model.score(x_test,y_test)))
 
     # kết quả dự đoán trong file test
-    # print(model.predicts(x_test))
+    while True:
+        label,p = model.predict(input("lenh: "))
+        print(label,p)
+        if(label==1):
+            break
     # print(y_test)
 
     # dự đoán 1 câu

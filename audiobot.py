@@ -26,7 +26,7 @@ def listen(model):
         print("F.R.I.D.A.Y: listening...")
         bot.pause_threshold = 1 #dung 2s roi nghe lenh moi
         audio = bot.listen(mic)
-    s = ""#input("lenh : ")
+    s = ""
     try:
         s = bot.recognize_google(audio, language="vi-VN")
         print("you: " + str(s))

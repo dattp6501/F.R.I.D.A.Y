@@ -13,6 +13,9 @@ import Controller
 import Volume
 import train
 import pandas as pd
+
+from seleniumFRIDAY import botfb,botyoutube
+
 def welcome():
     hour = datetime.now().hour
     if hour<=10:
@@ -32,6 +35,7 @@ def search():
     data =  wikipedia.summary(key,1)
     audiobot.speak_vn(data)
 if __name__ == "__main__":
+    
     # create model
     model = train.MyModel()
     pathfile = os.getcwd()
@@ -87,10 +91,13 @@ if __name__ == "__main__":
             web.google()
         elif (label==9):
             # audiobot.speak_vn("facebook")
-            web.facebook()
+            # web.facebook()
+            fb = botfb.BotFB()
+            fb.control()
         elif(label==10):
             # audiobot.speak_vn("youtobe")
-            web.youtube()
+            yt = botyoutube.BotYoutube()
+            yt.controll()
         elif (label==11):
             # audiobot.speak_vn("gmail")
             web.gmail()
@@ -117,3 +124,4 @@ if __name__ == "__main__":
             audiobot.speak_vn("các chức năng")
             for i in range(2,len(options)-1):
                 audiobot.speak_vn(options[i])
+    
