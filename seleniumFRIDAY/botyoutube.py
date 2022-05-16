@@ -41,14 +41,18 @@ class BotYoutube:
 
     def trangchu(self):
         try:
-            xpath = '/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[1]/a/tp-yt-paper-item'
+            xpath = '/html/body/ytd-app/div[1]/tp-yt-app-drawer/div[2]/div/div[2]/div[2]/ytd-guide-renderer/div[1]/ytd-guide-section-renderer[1]/div/ytd-guide-entry-renderer[1]/a'
             elements = self.browser.find_elements_by_xpath(xpath)
             elements[0].click()
+
+            # list_video = self.read_video_home()
+            # sleep(random.randint(3,4))
+            # list_video[0]["element video"].click()
         except:
             pass
 
     def timkiem(self):
-        try:
+        # try:
             xpath = '/html/body/ytd-app/div[1]/div/ytd-masthead/div[3]/div[2]/ytd-searchbox/form/div[1]/div[1]/input'
             elements = self.browser.find_elements_by_xpath(xpath)
             audiobot.speak_vn("Bạn muốn tìm gì")
@@ -60,11 +64,11 @@ class BotYoutube:
 
             list_video = self.read_video_search()
             sleep(random.randint(3,5))
-            print(list_video[0]["element video"])
+            print(list_video[0])
             list_video[0]["element video"].click()
 
-        except:
-            pass
+        # except:
+        #     pass
     
     def cuonxuong(self):
         try:
@@ -101,39 +105,40 @@ class BotYoutube:
             pass
 
     def read_video_search(self):
-        try:
-            xpath_hangs = '/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer'
-            sohang = len(self.browser.find_elements_by_xpath(xpath_hangs))
-            sleep(random.randint(3,5))
-            print(sohang)
-            list_video = []
-            for i in range(1,sohang+1):
-                # tieu de video        
-                xpath_tieude = f'/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/div[1]/div/div[1]/div/h3/a/yt-formatted-string'
-                element_tieude = self.browser.find_element_by_xpath(xpath_tieude)
-                tieude_video = element_tieude.text
-                
-                # element de vao kenh
-                xpath_kenh = f'/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/div[1]/div/div[2]/ytd-channel-name/div/div/yt-formatted-string/a'
-                kenh = self.browser.find_element_by_xpath(xpath_kenh)
-                # ten kenh
-                ten_kenh = kenh.text
-                #               
-                xpath_element = f'/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/yt-interaction'
-                element = self.browser.find_element_by_xpath(xpath_element)
-                
-                list_video.append(
-                    {
-                        "ten kenh" : ten_kenh,
-                        "element kenh": kenh,
-                        "element video" : element,
-                        "tieu de" : tieude_video
-                    }
-                )
-            return list_video
-        except:
-            pass
-        return None
+        list_video = []
+        # try:
+        xpath_hangs = '/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer'
+        sohang = len(self.browser.find_elements_by_xpath(xpath_hangs))
+        sleep(random.randint(3,5))
+        print(f"có :{sohang} video")
+        
+        for i in range(1,sohang+1):
+            # tieu de video  /html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/div[1]/div/div[2]/ytd-channel-name/div/div/yt-formatted-string/a      
+            xpath_tieude = f'/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/div[1]/div/div[2]/ytd-channel-name/div/div/yt-formatted-string/a'
+            element_tieude = self.browser.find_element_by_xpath(xpath_tieude)
+            tieude_video = element_tieude.text
+            
+            # element de vao kenh
+            xpath_kenh = f'/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/div[1]/div/div[2]/ytd-channel-name/div/div/yt-formatted-string/a'
+            kenh = self.browser.find_element_by_xpath(xpath_kenh)
+            # ten kenh
+            ten_kenh = kenh.text
+            #                 /html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[1]/div[1]/ytd-thumbnail/a/yt-img-shadow/img
+            xpath_element = f'/html/body/ytd-app/div[1]/ytd-page-manager/ytd-search/div[1]/ytd-two-column-search-results-renderer/div/ytd-section-list-renderer/div[2]/ytd-item-section-renderer/div[3]/ytd-video-renderer[{i}]/div[1]/ytd-thumbnail/a/yt-img-shadow/img'
+            element = self.browser.find_element_by_xpath(xpath_element)
+            
+            list_video.append(
+                {
+                    "ten kenh" : ten_kenh,
+                    "element kenh": kenh,
+                    "element video" : element,
+                    "tieu de" : tieude_video
+                }
+            )
+        return list_video
+        # except:
+        #     pass
+        # return list_video
 
     def read_video_home(self):
         try:
