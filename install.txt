@@ -15,4 +15,4 @@ pip install https://gitlab.com/trungtv/vi_spacy/-/raw/master/vi_core_news_lg/dis
 pip install pyvi
 pip install opencv-python
 pip install pyautogui
-pip install speedtest
+pip install speedtest-cli

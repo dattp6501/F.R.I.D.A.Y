@@ -29,10 +29,7 @@ class BotYoutube:
                 elif("lên" in req):
                     self.cuonglen()
                 elif("video" in req):
-                    self.trangchu()
-                    sleep(random.randint(3,4))
-                    list_video = self.read_video_home()
-                    list_video[0]["element video"].click()
+                    self.openVideo()
                 elif("thôi" in req or "dừng" in req or "thoát" in req):
                     break
         finally:
@@ -50,6 +47,12 @@ class BotYoutube:
             # list_video[0]["element video"].click()
         except:
             pass
+    
+    def openVideo(self):
+        self.trangchu()
+        sleep(random.randint(3,4))
+        list_video = self.read_video_home()
+        list_video[0]["element video"].click()
 
     def timkiem(self):
         # try:

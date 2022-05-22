@@ -1,7 +1,7 @@
-import speedtest
+import speedtest_cli
 import audiobot
 def network():
-    st = speedtest.speedtest()
+    st = speedtest_cli.Speedtest()
     server_names = []   
     st.get_servers(server_names)
 

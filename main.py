@@ -35,9 +35,9 @@ def search():
     data =  wikipedia.summary(key,1)
     audiobot.speak_vn(data)
 if __name__ == "__main__":
-    bot = botyoutube.BotYoutube()
-    bot.controll()
-    """
+    # bot = botyoutube.BotYoutube()
+    # bot.controll()
+    
     # create model
     model = train.MyModel()
     pathfile = os.getcwd()
@@ -45,11 +45,11 @@ if __name__ == "__main__":
     # train
     model.fit(x_data,y_data)
     # test
-    x_test,y_test = model.read_file_excel(f"{pathfile}\\test.xlsx")
-    print("độ chính xác: " + str(model.score(x_test,y_test)))
+    # x_test,y_test = model.read_file_excel(f"{pathfile}\\test.xlsx")
+    # print("độ chính xác: " + str(model.score(x_test,y_test)))
     # start 
     label,p = -1,0
-    ok = 0.5
+    ok = 0.4
     while(label!=0 or ok>=p):
         label,p = audiobot.listen(model)
         print(f"{label}, {p}")
@@ -127,4 +127,3 @@ if __name__ == "__main__":
             audiobot.speak_vn("các chức năng")
             for i in range(2,len(options)-1):
                 audiobot.speak_vn(options[i])
-    """

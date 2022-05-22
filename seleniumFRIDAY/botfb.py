@@ -22,6 +22,7 @@ class BotFB:
         sleep(random.randint(1,2))
         txtPass.send_keys(Keys.ENTER)
         sleep(random.randint(4,7))
+    
     def controll(self):
         audiobot.speak_vn("bạn cần tôi giúp gì ở facebook nào")
         try:
@@ -47,7 +48,6 @@ class BotFB:
         try:
             xpath = '/html/body/div[1]/div/div[1]/div/div[2]/div[3]/div/div[1]/div[1]/ul/li[1]/span/div/a'
             elements = self.browser.find_elements_by_xpath(xpath)
-            print(elements)
             elements[0].click()
         except:
             pass
@@ -89,8 +89,7 @@ class BotFB:
                     delay -= 0.07
             elif(keyboard.is_pressed('d')):
                 delay += 0.07
-            keyboard.block_key("u")
-            keyboard.block_key("d")
+            keyboard.unhook_all_hotkeys
             sleep(delay)
             
     def cuonglen(self): 
@@ -104,6 +103,5 @@ class BotFB:
                     delay -= 0.2
             elif(keyboard.is_pressed('d')):
                 delay += 0.2
-            keyboard.block_key("u")
-            keyboard.block_key("d")
+            keyboard.unhook_all_hotkeys
             sleep(delay)

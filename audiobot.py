@@ -19,7 +19,7 @@ def speak_vn(s):
     tts.save(pathsound)
     playsound.playsound(pathsound,True)
     os.remove(pathsound)
-# chuyen giong noi thanh string
+
 def listen(model):
     bot = speech_recognition.Recognizer()
     with speech_recognition.Microphone() as mic:
@@ -31,18 +31,18 @@ def listen(model):
         s = bot.recognize_google(audio, language="vi-VN")
         print("you: " + str(s))
     except speech_recognition.UnknownValueError:
-        return -1
+        return -1,-1
     return model.predict(s)
-    
+# chuyen giong noi thanh string
 def listentotext():
-    # bot = speech_recognition.Recognizer()
-    # with speech_recognition.Microphone() as mic:
-    #     print("F.R.I.D.A.Y: listening...")
-    #     bot.pause_threshold = 1 #dung 2s roi nghe lenh moi
-    #     audio = bot.listen(mic)
-    s = input("lệnh : ")
+    bot = speech_recognition.Recognizer()
+    with speech_recognition.Microphone() as mic:
+        print("F.R.I.D.A.Y: listening...")
+        bot.pause_threshold = 1 #dung 2s roi nghe lenh moi
+        audio = bot.listen(mic)
+    s = ""
     try:
-        # s = bot.recognize_google(audio, language="vi-VN")
+        s = bot.recognize_google(audio, language="vi-VN")
         print("you: "+ s)
     except speech_recognition.UnknownValueError:
         return ""
