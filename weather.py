@@ -9,7 +9,7 @@ def current_weather():
     if not city:
         pass
     api_key = "ce707b402145926a2f7e42eeaab3a8d8"
-    call_url = f"https://api.openweathermap.org/data/2.5/weather?appid={api_key}&q={city}&units=metric"
+    call_url = f"https://api.openweathermap.org/data/2.5/weather?appid={api_key}&q={city}&units=metric&lang=vi"
     response = requests.get(call_url)
     data_json = response.json()
     if data_json["cod"] == "404":
